@@ -12,12 +12,3 @@ def sample_province_data
     price: 20
   }
 end
-
-def no_producers
-  {
-    name: 'No producers',
-    producers: [],
-    demand: 30,
-    price: 20
-  }
-end
