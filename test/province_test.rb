@@ -8,7 +8,6 @@ class ProvinceTest < Minitest::Test
 
   def setup
     @asia = Province.new(sample_province_data)
-    @no_producers = Province.new(no_producers)
   end
 
   def test_province_shortfall
@@ -48,12 +47,22 @@ class ProvinceTest < Minitest::Test
     assert_equal(-10, @asia.profit)
   end
 
-  # doesn't run because province throws an error
-  # def test_province_empty_string_demand
-  #   @asia.demand = ""
-  #   assert(@asia.shortfall.nan?)
-  #   assert(@asia.profit.nan?)
-  # end
+  # doesn't run green because province throws an error
+  def test_province_empty_string_demand
+    @asia.demand = ""
+    assert(@asia.shortfall.nan?)
+    assert(@asia.profit.nan?)
+  end
 
+  # doesn't run green because province throws an error
+  def test_province_string_for_producers
+    string_producers = Province.new({
+      name: 'String producers',
+      producers: '',
+      demand: 30,
+      price: 20
+    })
+    assert_equal(0, string_producers.shortfall)
+  end
 
 end
